@@ -1,31 +1,32 @@
 import express from 'express'
 import { verifyToken, verifyAdmin } from '../middleware/auth.js'
+import {
+  getProdutos,
+  getProdutoById,
+  createProduto,
+  updateProduto,
+  deleteProduto,
+  searchProdutos
+} from '../controllers/produtoController.js'
 
 const router = express.Router()
 
-// GET todos os produtos
-router.get('/', (req, res) => {
-  res.json({ mensagem: 'Lista de produtos' })
-})
+// GET /produtos - Listar todos os produtos (público)
+router.get('/', getProdutos)
 
-// GET produto por ID
-router.get('/:id', (req, res) => {
-  res.json({ mensagem: `Produto ${req.params.id}` })
-})
+// GET /produtos/search/:nome - Buscar produtos por nome (público)
+router.get('/search/:nome', searchProdutos)
 
-// POST criar produto (apenas admin)
-router.post('/', verifyAdmin, (req, res) => {
-  res.status(201).json({ mensagem: 'Produto criado' })
-})
+// GET /produtos/:id - Buscar produto por ID (público)
+router.get('/:id', getProdutoById)
 
-// PUT atualizar produto (apenas admin)
-router.put('/:id', verifyAdmin, (req, res) => {
-  res.json({ mensagem: `Produto ${req.params.id} atualizado` })
-})
+// POST /produtos - Criar produto (apenas admin)
+router.post('/', verifyAdmin, createProduto)
 
-// DELETE deletar produto (apenas admin)
-router.delete('/:id', verifyAdmin, (req, res) => {
-  res.json({ mensagem: `Produto ${req.params.id} deletado` })
-})
+// PUT /produtos/:id - Atualizar produto (apenas admin)
+router.put('/:id', verifyAdmin, updateProduto)
+
+// DELETE /produtos/:id - Deletar produto (apenas admin)
+router.delete('/:id', verifyAdmin, deleteProduto)
 
 export default router
