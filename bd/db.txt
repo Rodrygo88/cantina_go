@@ -1,0 +1,24 @@
+create table if not exists usuarios(
+	id  uuid primary key,
+	nome varchar(100) not null,
+	email varchar(150) not null unique,
+	senha text not null
+);
+
+create table if not exists cantinas(
+	id  uuid primary key,
+	nome varchar(100) not null,
+	email varchar(150) not null unique,
+	senha text not null
+);
+
+create table if not exists produtos(
+	id  uuid primary key,
+	nome varchar(100) not null,
+	descricao text,
+	preco decimal(10, 2) not null
+);
+
+create database cantina;
+
+
