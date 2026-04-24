@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser"
 import healthRoutes from "./routes/health.js"
 import usuariosRoutes from "./routes/usuarios.js"
 import produtosRoutes from "./routes/produtos.js"
+import cantinasRoutes from "./routes/cantinas.js"
 
 dotenv.config()
 
@@ -23,6 +24,7 @@ app.use(cookieParser())
 app.use('/', healthRoutes)
 app.use('/usuarios', usuariosRoutes)
 app.use('/produtos', produtosRoutes)
+app.use('/cantinas', cantinasRoutes)
 
 // Tratamento de erros 404
 app.use((req, res) => {

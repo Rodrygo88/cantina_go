@@ -1,31 +1,31 @@
 import express from 'express'
-import { verifyToken, verifyAdmin } from '../middleware/auth.js'
+import {
+  getUsuarios,
+  getUsuarioById,
+  createUsuario,
+  updateUsuario,
+  deleteUsuario,
+  loginUsuario
+} from '../controllers/usuarioController.js'
 
 const router = express.Router()
 
-// GET todos os usuários (apenas admin)
-router.get('/', verifyAdmin, (req, res) => {
-  res.json({ mensagem: 'Lista de usuários' })
-})
+// GET /usuarios - Listar todos
+router.get('/', getUsuarios)
 
-// GET usuário por ID
-router.get('/:id', verifyToken, (req, res) => {
-  res.json({ mensagem: `Usuário ${req.params.id}` })
-})
+// GET /usuarios/:id - Buscar por ID
+router.get('/:id', getUsuarioById)
 
-// POST criar usuário
-router.post('/', (req, res) => {
-  res.status(201).json({ mensagem: 'Usuário criado' })
-})
+// POST /usuarios - Criar novo usuário
+router.post('/', createUsuario)
 
-// PUT atualizar usuário
-router.put('/:id', verifyToken, (req, res) => {
-  res.json({ mensagem: `Usuário ${req.params.id} atualizado` })
-})
+// POST /usuarios/login - Login
+router.post('/login', loginUsuario)
 
-// DELETE deletar usuário
-router.delete('/:id', verifyAdmin, (req, res) => {
-  res.json({ mensagem: `Usuário ${req.params.id} deletado` })
-})
+// PUT /usuarios/:id - Atualizar
+router.put('/:id', updateUsuario)
+
+// DELETE /usuarios/:id - Deletar
+router.delete('/:id', deleteUsuario)
 
 export default router
