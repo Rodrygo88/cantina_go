@@ -57,9 +57,12 @@ export async function migrate() {
   await pool.query(`ALTER TABLE IF EXISTS cantinas ADD COLUMN IF NOT EXISTS token_version INT DEFAULT 0`);
   await pool.query(`ALTER TABLE IF EXISTS usuarios ADD COLUMN IF NOT EXISTS email_verificado BOOLEAN DEFAULT FALSE`);
   await pool.query(`ALTER TABLE IF EXISTS usuarios ADD COLUMN IF NOT EXISTS token_verificacao TEXT`);
+  await pool.query(`ALTER TABLE IF EXISTS usuarios ADD COLUMN IF NOT EXISTS token_verificacao_expira TIMESTAMP`);
   await pool.query(`ALTER TABLE IF EXISTS usuarios ADD COLUMN IF NOT EXISTS token_reset TEXT`);
   await pool.query(`ALTER TABLE IF EXISTS usuarios ADD COLUMN IF NOT EXISTS token_reset_expira TIMESTAMP`);
   await pool.query(`ALTER TABLE IF EXISTS produtos ADD COLUMN IF NOT EXISTS arquivado BOOLEAN DEFAULT FALSE`);
+  await pool.query(`ALTER TABLE IF EXISTS cantinas ADD COLUMN IF NOT EXISTS horario_abertura VARCHAR(5)`);
+  await pool.query(`ALTER TABLE IF EXISTS cantinas ADD COLUMN IF NOT EXISTS horario_fechamento VARCHAR(5)`);
   await pool.query(`ALTER TABLE IF EXISTS reserva_itens ADD COLUMN IF NOT EXISTS nome_produto TEXT`);
   await pool.query(`ALTER TABLE IF EXISTS reserva_itens ADD COLUMN IF NOT EXISTS preco_unitario NUMERIC(10,2)`);
 

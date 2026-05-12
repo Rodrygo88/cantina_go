@@ -10,7 +10,6 @@ import AuthMiddleware from './middleware/AuthMiddleware.js';
 import ErrorMiddleware from './middleware/ErrorMiddleware.js';
 import { apiLimiter } from './middleware/RateLimitMiddleware.js';
 import WelcomePage from './views/WelcomePage.js';
-import CantinaController from './controllers/cantinaController.js';
 import authRoutes from './routes/authRoutes.js';
 import produtoRoutes from './routes/produtoRoutes.js';
 import usuarioRoutes from './routes/usuarioRoutes.js';
@@ -19,6 +18,7 @@ import reservaRoutes from './routes/reservaRoutes.js';
 import { migrate } from './migrations.js';
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from './config/swagger.js';
+import sseRoutes from './routes/sseRoutes.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: join(__dirname, '.env') });
@@ -44,17 +44,19 @@ app.use('/api', apiLimiter);
 // Documentação Swagger
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+// Notificações em tempo real (SSE)
+app.use('/api/sse', sseRoutes);
+
 // Rotas públicas
 app.get(['/', '/api', '/api/bemvindo'], (req, res) => {
   res.send(welcomePage.render(req));
 });
 app.use('/api/auth', authRoutes);
 app.use('/api/produtos', produtoRoutes);
-app.get('/api/cantinas', CantinaController.listar);
+app.use('/api/cantinas', cantinaRoutes);
 
 // Rotas protegidas (exigem token JWT)
 app.use('/api/usuarios', AuthMiddleware.verificar, usuarioRoutes);
-app.use('/api/cantinas', AuthMiddleware.verificar, cantinaRoutes);
 app.use('/api/reservas', AuthMiddleware.verificar, reservaRoutes);
 
 // Tratamento centralizado de erros (deve ser o último middleware)
