@@ -62,7 +62,7 @@ const spec = {
     },
     '/api/auth/registro/cantina': {
       post: {
-        tags: ['Criar Usuário Cantina'],
+        tags: ['Criar Cantina'],
         summary: 'Criar conta de cantina (vendedor)',
         description: '**Cria um novo usuário do tipo cantina (vendedor).** Requer a chave administrativa (`CANTINA_REGISTER_KEY`) definida no servidor. Use este endpoint para registrar uma nova cantina no sistema.',
         requestBody: {
@@ -148,7 +148,7 @@ const spec = {
     },
     '/api/auth/reenviar-verificacao': {
       post: {
-        tags: ['Criar Usuário Cantina'],
+        tags: ['Criar Cantina'],
         summary: 'Reenviar e-mail de verificação',
         description: 'Reenvia o e-mail de verificação para contas que ainda não confirmaram o endereço.',
         requestBody: {
