@@ -221,7 +221,7 @@ export default function LoginPage() {
               {modo === 'verificando' ? 'Verifique seu e-mail'
                 : isAluno
                   ? modo === 'cadastro' ? 'Cadastro de Aluno' : 'Login de Aluno'
-                  : modo === 'cadastro' ? 'Cadastro de Cantina' : 'Login da Cantina'}
+                  : 'Login da Cantina'}
             </h2>
             <p>
               {modo === 'verificando' ? 'Digite o código de 6 dígitos enviado para o seu e-mail'
@@ -229,9 +229,7 @@ export default function LoginPage() {
                   ? modo === 'cadastro'
                     ? 'Crie sua conta para fazer reservas'
                     : 'Entre para ver o menu e fazer reservas'
-                  : modo === 'cadastro'
-                    ? 'Cadastre sua cantina no sistema'
-                    : 'Acesse o painel para gerenciar o menu'}
+                  : 'Acesse o painel para gerenciar o menu'}
             </p>
           </div>
 
@@ -344,18 +342,18 @@ export default function LoginPage() {
             </button>
           </form>}
 
-          {modo !== 'verificando' && (
+          {modo !== 'verificando' && isAluno && (
             <div className={styles.alternar}>
               {modo === 'login' ? (
                 <p>
-                  {isAluno ? 'Não tem conta?' : 'Cantina não cadastrada?'}{' '}
+                  Não tem conta?{' '}
                   <button className={styles.linkBtn} onClick={() => { setModo('cadastro'); setErro(''); }}>
                     Cadastre-se
                   </button>
                 </p>
               ) : (
                 <p>
-                  Já tem {isAluno ? 'conta' : 'cadastro'}?{' '}
+                  Já tem conta?{' '}
                   <button className={styles.linkBtn} onClick={() => { setModo('login'); setErro(''); }}>
                     Entrar
                   </button>
