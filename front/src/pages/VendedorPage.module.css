@@ -37,8 +37,8 @@
   padding: 10px 14px;
   border-radius: 10px;
   border: 2px solid var(--border);
-  background: var(--bg-secondary);
-  color: var(--text);
+  background: var(--bg-card);
+  color: var(--text-primary);
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.2s;
