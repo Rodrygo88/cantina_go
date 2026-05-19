@@ -4,19 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CantinaGO — Apresentação</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --bg: #0a0a0f;
-    --surface: #12121a;
-    --card: #1a1a26;
-    --border: #2a2a3a;
-    --accent: #6c63ff;
-    --accent2: #00d4aa;
-    --accent3: #ff6b6b;
-    --text: #e8e8f0;
-    --muted: #888899;
+    --bg: #1c0e03;
+    --surface: #130800;
+    --card: #2f1806;
+    --border: #4e2c0e;
+    --accent: #f97316;
+    --accent2: #fb923c;
+    --accent3: #c2410c;
+    --text: #f8ede0;
+    --muted: #9a7a58;
     --white: #ffffff;
   }
 
@@ -50,8 +51,8 @@
 
   /* ── SLIDE 1 — ABERTURA ── */
   .slide-abertura {
-    background: radial-gradient(ellipse at 30% 50%, #1a1040 0%, var(--bg) 60%),
-                radial-gradient(ellipse at 70% 20%, #0d2a24 0%, transparent 50%);
+    background: radial-gradient(ellipse at 30% 50%, #3a1800 0%, var(--bg) 60%),
+                radial-gradient(ellipse at 70% 20%, #2a0e00 0%, transparent 50%);
     text-align: center;
     gap: 24px;
   }
@@ -60,9 +61,9 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: rgba(108,99,255,0.15);
-    border: 1px solid rgba(108,99,255,0.4);
-    color: #a09af0;
+    background: rgba(249,115,22,0.15);
+    border: 1px solid rgba(249,115,22,0.4);
+    color: #fb923c;
     font-size: 13px;
     padding: 6px 16px;
     border-radius: 100px;
@@ -75,7 +76,7 @@
     font-size: 80px;
     font-weight: 800;
     letter-spacing: -3px;
-    background: linear-gradient(135deg, #fff 0%, #a09af0 50%, #00d4aa 100%);
+    background: linear-gradient(135deg, #fff 0%, #fb923c 50%, #f97316 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -108,7 +109,7 @@
 
   /* ── SLIDE 2 — ARQUITETURA ── */
   .slide-arch {
-    background: radial-gradient(ellipse at 80% 20%, #0d1a2a 0%, var(--bg) 60%);
+    background: radial-gradient(ellipse at 80% 20%, #2a1000 0%, var(--bg) 60%);
     gap: 28px;
     align-items: flex-start;
   }
@@ -132,8 +133,8 @@
 
   .analogy-banner {
     width: 100%;
-    background: rgba(108,99,255,0.08);
-    border: 1px solid rgba(108,99,255,0.25);
+    background: rgba(249,115,22,0.08);
+    border: 1px solid rgba(249,115,22,0.25);
     border-radius: 14px;
     padding: 14px 24px;
     display: flex;
@@ -163,6 +164,7 @@
 
   .arch-layer:hover { transform: translateY(-4px); border-color: var(--accent); }
 
+
   .arch-layer .layer-emoji { font-size: 28px; }
   .arch-layer .layer-name { font-size: 17px; font-weight: 700; color: var(--white); }
   .arch-layer .layer-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
@@ -170,8 +172,8 @@
     margin-top: 6px;
     font-size: 11px;
     color: var(--accent2);
-    background: rgba(0,212,170,0.08);
-    border: 1px solid rgba(0,212,170,0.2);
+    background: rgba(251,146,60,0.08);
+    border: 1px solid rgba(251,146,60,0.2);
     border-radius: 100px;
     padding: 3px 10px;
   }
@@ -180,7 +182,7 @@
 
   /* ── SLIDE 3 — TECNOLOGIAS ── */
   .slide-tech {
-    background: radial-gradient(ellipse at 20% 80%, #1a0d2a 0%, var(--bg) 60%);
+    background: radial-gradient(ellipse at 20% 80%, #2a1200 0%, var(--bg) 60%);
     gap: 28px;
     align-items: flex-start;
   }
@@ -208,8 +210,8 @@
 
   .tech-col-title.backend  { color: var(--accent); }
   .tech-col-title.frontend { color: var(--accent2); }
-  .tech-col-title.infra    { color: #f59e0b; }
-  .tech-col-title.tests    { color: var(--accent3); }
+  .tech-col-title.infra    { color: #fbbf24; }
+  .tech-col-title.tests    { color: #f8ede0; }
 
   .tech-item { display: flex; align-items: center; gap: 10px; }
   .tech-item .tech-name { font-size: 14px; font-weight: 600; color: var(--white); flex: 1; }
@@ -218,12 +220,77 @@
   .tech-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
   .tech-dot.backend  { background: var(--accent); }
   .tech-dot.frontend { background: var(--accent2); }
-  .tech-dot.infra    { background: #f59e0b; }
-  .tech-dot.tests    { background: var(--accent3); }
+  .tech-dot.infra    { background: #fbbf24; }
+  .tech-dot.tests    { background: #f8ede0; }
 
-  /* ── SLIDE 4 — SEGURANÇA ── */
+  /* ── SLIDE 4 — REST ── */
+  .slide-rest {
+    background: radial-gradient(ellipse at 60% 20%, #2a1000 0%, var(--bg) 60%);
+    gap: 28px;
+    align-items: flex-start;
+  }
+
+  .rest-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; }
+
+  .rest-col {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .rest-col.chosen { border-color: rgba(249,115,22,0.5); }
+  .rest-col.other  { border-color: var(--border); opacity: 0.75; }
+
+  .rest-col-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .rest-col-header .col-icon { font-size: 22px; }
+  .rest-col-header .col-name { font-size: 16px; font-weight: 700; color: var(--white); }
+  .rest-col-header .col-badge {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  .col-badge.yes { background: rgba(249,115,22,0.2); color: var(--accent); border: 1px solid rgba(249,115,22,0.4); }
+  .col-badge.no  { background: rgba(154,122,88,0.15); color: var(--muted); border: 1px solid rgba(154,122,88,0.3); }
+
+  .rest-point { display: flex; align-items: flex-start; gap: 10px; }
+  .rest-point .rp-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
+  .rp-dot.pro  { background: var(--accent); }
+  .rp-dot.con  { background: var(--muted); }
+  .rest-point .rp-text { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .rest-point .rp-text span { font-size: 11px; color: var(--muted); display: block; }
+
+  .rest-verdict {
+    width: 100%;
+    background: rgba(249,115,22,0.08);
+    border: 1px solid rgba(249,115,22,0.3);
+    border-radius: 14px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .rest-verdict .rv-icon { font-size: 24px; flex-shrink: 0; }
+  .rest-verdict .rv-text { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .rest-verdict .rv-text strong { color: var(--accent); }
+
+  /* ── SLIDE 5 — SEGURANÇA ── */
   .slide-security {
-    background: radial-gradient(ellipse at 50% 0%, #1a0d20 0%, var(--bg) 60%);
+    background: radial-gradient(ellipse at 50% 0%, #3a1400 0%, var(--bg) 60%);
     gap: 28px;
     align-items: flex-start;
   }
@@ -241,7 +308,7 @@
     transition: border-color 0.2s, transform 0.2s;
   }
 
-  .security-card:hover { border-color: rgba(108,99,255,0.5); transform: translateY(-3px); }
+  .security-card:hover { border-color: rgba(249,115,22,0.5); transform: translateY(-3px); }
 
   .security-card .sec-top { display: flex; align-items: center; gap: 10px; }
   .security-card .sec-icon { font-size: 22px; }
@@ -252,8 +319,8 @@
     color: var(--accent2);
     font-style: italic;
     padding: 6px 10px;
-    background: rgba(0,212,170,0.06);
-    border-left: 2px solid rgba(0,212,170,0.4);
+    background: rgba(251,146,60,0.06);
+    border-left: 2px solid rgba(251,146,60,0.4);
     border-radius: 0 6px 6px 0;
   }
 
@@ -261,7 +328,7 @@
 
   /* ── SLIDE 5 — FRONTEND ── */
   .slide-frontend {
-    background: radial-gradient(ellipse at 80% 80%, #0d2018 0%, var(--bg) 60%);
+    background: radial-gradient(ellipse at 80% 80%, #2a1000 0%, var(--bg) 60%);
     gap: 28px;
     align-items: flex-start;
   }
@@ -314,9 +381,55 @@
 
   /* ── SLIDE 6 — ENCERRAMENTO ── */
   .slide-end {
-    background: radial-gradient(ellipse at 50% 50%, #1a1040 0%, var(--bg) 70%);
+    background: radial-gradient(ellipse at 50% 50%, #3a1800 0%, var(--bg) 70%);
+    flex-direction: row;
+    gap: 48px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .end-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
     text-align: center;
-    gap: 28px;
+  }
+
+  .qr-panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+
+  .qr-panel .qr-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent2);
+    font-weight: 700;
+  }
+
+  .qr-panel .qr-url {
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'Cascadia Code', 'Fira Code', monospace;
+  }
+
+  .qr-panel .qr-sub {
+    font-size: 12px;
+    color: var(--accent);
+  }
+
+  #qrcode canvas, #qrcode img {
+    border-radius: 10px;
+    display: block;
   }
 
   .score-ring { position: relative; width: 150px; height: 150px; }
@@ -325,7 +438,7 @@
   .score-ring .score-num {
     font-size: 40px;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--accent2), var(--accent));
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -339,9 +452,9 @@
 
   .check-item .check-icon {
     width: 24px; height: 24px; border-radius: 50%;
-    background: rgba(0,212,170,0.15); border: 1px solid rgba(0,212,170,0.4);
+    background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.4);
     display: flex; align-items: center; justify-content: center;
-    font-size: 12px; flex-shrink: 0; color: var(--accent2);
+    font-size: 12px; flex-shrink: 0; color: var(--accent);
   }
 
   .end-thanks { font-size: 52px; font-weight: 800; letter-spacing: -2px; color: var(--white); }
@@ -386,7 +499,7 @@
 <body>
 
 <div class="slide-logo">Cantina<span>GO</span></div>
-<div class="slide-num" id="slideNum">1 / 6</div>
+<div class="slide-num" id="slideNum">1 / 7</div>
 <div class="key-hint"><span class="key">←</span><span class="key">→</span> para navegar</div>
 
 <div class="slides-container">
@@ -499,10 +612,50 @@
     </div>
   </div>
 
-  <!-- SLIDE 4: SEGURANÇA -->
+  <!-- SLIDE 4: REST vs GraphQL -->
+  <div class="slide slide-rest">
+    <div class="slide-title">
+      <span class="tag">04 — Decisão de API</span>
+      <h2>Por que REST e não GraphQL?</h2>
+    </div>
+
+    <div class="rest-layout">
+      <div class="rest-col chosen">
+        <div class="rest-col-header">
+          <span class="col-icon">🌐</span>
+          <span class="col-name">REST</span>
+          <span class="col-badge yes">Nossa escolha</span>
+        </div>
+        <div class="rest-point"><div class="rp-dot pro"></div><div class="rp-text">Simples de implementar e entender<span>Menos overhead — cada endpoint faz uma coisa clara</span></div></div>
+        <div class="rest-point"><div class="rp-dot pro"></div><div class="rp-text">Documentação automática com Swagger<span>A UI interativa já vem pronta sem esforço extra</span></div></div>
+        <div class="rest-point"><div class="rp-dot pro"></div><div class="rp-text">Stateless por natureza<span>Facilita escalar horizontalmente — o servidor não guarda estado</span></div></div>
+        <div class="rest-point"><div class="rp-dot pro"></div><div class="rp-text">Padrão consolidado para SPAs<span>React + fetch/axios consome REST sem camada extra</span></div></div>
+        <div class="rest-point"><div class="rp-dot pro"></div><div class="rp-text">Resposta estruturada e previsível<span>Todo endpoint retorna o mesmo formato — o frontend sabe o que esperar</span></div></div>
+      </div>
+
+      <div class="rest-col other">
+        <div class="rest-col-header">
+          <span class="col-icon">🔷</span>
+          <span class="col-name">GraphQL</span>
+          <span class="col-badge no">Não se aplica aqui</span>
+        </div>
+        <div class="rest-point"><div class="rp-dot con"></div><div class="rp-text">Faz sentido com consultas de campos variáveis<span>Aqui os dados retornados são sempre os mesmos — não há over-fetching</span></div></div>
+        <div class="rest-point"><div class="rp-dot con"></div><div class="rp-text">Vantajoso em apps móveis com bandwidth limitado<span>Nosso frontend é web — sem essa restrição</span></div></div>
+        <div class="rest-point"><div class="rp-dot con"></div><div class="rp-text">Schema e resolvers adicionam complexidade<span>Custo de configuração alto para um projeto de escopo fixo</span></div></div>
+        <div class="rest-point"><div class="rp-dot con"></div><div class="rp-text">Documentação requer ferramentas extras<span>GraphiQL, Playground — sem equivalente tão direto quanto Swagger</span></div></div>
+      </div>
+    </div>
+
+    <div class="rest-verdict">
+      <span class="rv-icon">💡</span>
+      <div class="rv-text"><strong>Veredicto:</strong> GraphQL brilha quando o cliente precisa escolher exatamente quais campos buscar. Aqui, cada endpoint tem um propósito fixo — REST é mais direto, mais fácil de documentar e mais familiar para quem vai consumir ou revisar a API.</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: SEGURANÇA -->
   <div class="slide slide-security">
     <div class="slide-title">
-      <span class="tag">04 — Segurança</span>
+      <span class="tag">05 — Segurança</span>
       <h2>Proteção em Múltiplas Camadas</h2>
     </div>
     <div class="security-grid">
@@ -567,7 +720,7 @@
   <!-- SLIDE 5: FRONTEND -->
   <div class="slide slide-frontend">
     <div class="slide-title">
-      <span class="tag">05 — Frontend</span>
+      <span class="tag">06 — Frontend</span>
       <h2>React 19 + Experiência do Usuário</h2>
     </div>
     <div class="frontend-layout">
@@ -630,33 +783,42 @@
 
   <!-- SLIDE 6: ENCERRAMENTO -->
   <div class="slide slide-end">
-    <div class="score-ring">
-      <svg width="150" height="150" viewBox="0 0 160 160">
-        <circle cx="80" cy="80" r="68" fill="none" stroke="#1a1a26" stroke-width="12"/>
-        <circle cx="80" cy="80" r="68" fill="none" stroke="url(#grad)" stroke-width="12"
-          stroke-dasharray="427" stroke-dashoffset="64" stroke-linecap="round"/>
-        <defs>
-          <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#00d4aa"/>
-            <stop offset="100%" stop-color="#6c63ff"/>
-          </linearGradient>
-        </defs>
-      </svg>
-      <div class="score-text">
-        <span class="score-num">8,5</span>
-        <span class="score-label">/ 10</span>
+    <div class="end-content">
+      <div class="score-ring">
+        <svg width="150" height="150" viewBox="0 0 160 160">
+          <circle cx="80" cy="80" r="68" fill="none" stroke="#1a1a26" stroke-width="12"/>
+          <circle cx="80" cy="80" r="68" fill="none" stroke="url(#grad)" stroke-width="12"
+            stroke-dasharray="427" stroke-dashoffset="64" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#f97316"/>
+              <stop offset="100%" stop-color="#fb923c"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="score-text">
+          <span class="score-num">8,5</span>
+          <span class="score-label">/ 10</span>
+        </div>
       </div>
+
+      <div class="end-checklist">
+        <div class="check-item"><div class="check-icon">✓</div>Zero vulnerabilidades nas dependências</div>
+        <div class="check-item"><div class="check-icon">✓</div>Autenticação robusta com JWT + token versioning</div>
+        <div class="check-item"><div class="check-icon">✓</div>Proteção contra força bruta persistente</div>
+        <div class="check-item"><div class="check-icon">✓</div>175 testes unitários cobrindo as regras de negócio</div>
+      </div>
+
+      <div class="end-thanks">Obrigado.</div>
+      <div class="end-sub">Para nota 10: um pentest externo com OWASP ZAP — próximo passo natural se o sistema fosse para produção real.</div>
     </div>
 
-    <div class="end-checklist">
-      <div class="check-item"><div class="check-icon">✓</div>Zero vulnerabilidades nas dependências</div>
-      <div class="check-item"><div class="check-icon">✓</div>Autenticação robusta com JWT + token versioning</div>
-      <div class="check-item"><div class="check-icon">✓</div>Proteção contra força bruta persistente</div>
-      <div class="check-item"><div class="check-icon">✓</div>175 testes unitários cobrindo as regras de negócio</div>
+    <div class="qr-panel">
+      <div class="qr-title">Teste agora</div>
+      <div id="qrcode"></div>
+      <div class="qr-url">cantinago.tech</div>
+      <div class="qr-sub">Escaneie para acessar</div>
     </div>
-
-    <div class="end-thanks">Obrigado.</div>
-    <div class="end-sub">Para nota 10: um pentest externo com OWASP ZAP — próximo passo natural se o sistema fosse para produção real.</div>
   </div>
 
 </div>
@@ -670,7 +832,7 @@
 </div>
 
 <script>
-  const total = 6;
+  const total = 7;
   let current = 0;
 
   const slidesEl = Array.from(document.querySelectorAll('.slide'));
@@ -712,6 +874,15 @@
   document.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') changeSlide(1);
     if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+  });
+
+  new QRCode(document.getElementById('qrcode'), {
+    text: 'https://www.cantinago.tech/',
+    width: 180,
+    height: 180,
+    colorDark: '#f97316',
+    colorLight: '#2f1806',
+    correctLevel: QRCode.CorrectLevel.M
   });
 </script>
 </body>
