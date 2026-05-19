@@ -4,6 +4,7 @@ import { api } from '../api';
 import Navegacao from '../components/Navegacao';
 import { useConfirm } from '../context/ConfirmContext';
 import { STORAGE_KEYS } from '../constants/storage';
+import { getSons, getSomAtual, setSomAtual, tocarSom } from '../utils/audio';
 import styles from './VendedorPage.module.css';
 
 export default function VendedorPage() {
@@ -19,10 +20,18 @@ export default function VendedorPage() {
   const [salvandoHorario, setSalvandoHorario] = useState(false);
   const [msgHorario, setMsgHorario] = useState('');
 
+  const [somSelecionado, setSomSelecionado] = useState(getSomAtual);
+
   const navigate = useNavigate();
   const { confirm } = useConfirm();
   const user = JSON.parse(localStorage.getItem(STORAGE_KEYS.USER) || '{}');
   const userId = user.id;
+
+  function escolherSom(id) {
+    setSomAtual(id);
+    setSomSelecionado(id);
+    tocarSom(id);
+  }
 
   function sair() {
     localStorage.clear();
@@ -168,6 +177,21 @@ export default function VendedorPage() {
           </div>
           <p>Ative os itens disponíveis ou cadastre novos</p>
         </header>
+
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>Som de Notificação</h2>
+          <div className={styles.somSelector}>
+            {getSons().map(som => (
+              <button
+                key={som.id}
+                className={`${styles.somBtn} ${somSelecionado === som.id ? styles.somBtnAtivo : ''}`}
+                onClick={() => escolherSom(som.id)}
+              >
+                🔔 {som.label}
+              </button>
+            ))}
+          </div>
+        </section>
 
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>Itens Cadastrados</h2>

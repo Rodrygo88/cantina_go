@@ -25,6 +25,36 @@
   border-bottom: 1px solid var(--border);
 }
 
+.somSelector {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.somBtn {
+  flex: 1;
+  min-width: 100px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 2px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.somBtn:hover {
+  border-color: var(--accent);
+}
+
+.somBtnAtivo {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+
 .header h1 { color: var(--title); font-size: 1.8rem; font-weight: 800; margin: 0; }
 .header p  { color: var(--subtitle); margin: 5px 0 0 0; font-size: 0.9rem; }
 
