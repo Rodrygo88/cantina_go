@@ -83,7 +83,7 @@ const spec = {
                 nome: 'Cantina Central',
                 email: 'cantina@escola.br',
                 senha: 'Senha@123',
-                chaveAdmin: 'sua_chave_admin',
+                chaveAdmin: 'CantinaGO@2026',
               },
             },
           },
