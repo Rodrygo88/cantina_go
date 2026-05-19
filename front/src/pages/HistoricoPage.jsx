@@ -11,25 +11,30 @@ export default function HistoricoPage() {
   const [carregando, setCarregando] = useState(true);
   const [busca, setBusca] = useState('');
   const [pagina, setPagina] = useState(1);
+  const [totalServidor, setTotalServidor] = useState(0);
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem(STORAGE_KEYS.USER) || '{}');
     if (!user.id) return;
 
-    api.limparReservasAntigas().catch(() => {});
+    if (pagina === 1) api.limparReservasAntigas().catch(() => {});
 
-    api.getHistorico(user.id)
-      .then(({ data }) => setReservas(data || []))
-      .catch(() => setReservas([]))
+    setCarregando(true);
+    api.getHistorico(user.id, { page: pagina, limit: POR_PAGINA })
+      .then(({ data, pagination }) => {
+        setReservas(data || []);
+        setTotalServidor(pagination?.total ?? 0);
+      })
+      .catch(() => { setReservas([]); setTotalServidor(0); })
       .finally(() => setCarregando(false));
-  }, []);
+  }, [pagina]);
 
   const filtradas = reservas.filter((r) =>
     (r.usuario_nome || '').toLowerCase().includes(busca.toLowerCase())
   );
 
-  const totalPaginas = Math.ceil(filtradas.length / POR_PAGINA);
-  const paginadas = filtradas.slice((pagina - 1) * POR_PAGINA, pagina * POR_PAGINA);
+  const totalPaginas = Math.ceil(totalServidor / POR_PAGINA);
+  const paginadas = busca ? filtradas : reservas;
 
   const total = reservas.reduce((acc, r) => acc + parseFloat(r.total || 0), 0);
 
@@ -49,7 +54,7 @@ export default function HistoricoPage() {
 
         <section className={styles.statsRow}>
           <div className={styles.statCard}>
-            <span className={styles.statValue}>{reservas.length}</span>
+            <span className={styles.statValue}>{totalServidor}</span>
             <span className={styles.statLabel}>Entregues</span>
           </div>
           <div className={styles.statCard}>
@@ -70,7 +75,7 @@ export default function HistoricoPage() {
 
         <section className={styles.reservationsList}>
           {carregando && <p>Carregando...</p>}
-          {!carregando && filtradas.length === 0 && (
+          {!carregando && paginadas.length === 0 && (
             <p className={styles.vazio}>
               {busca ? 'Nenhum pedido encontrado para esse nome.' : 'Nenhum pedido entregue esta semana.'}
             </p>
