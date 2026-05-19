@@ -62,8 +62,9 @@ const spec = {
     },
     '/api/auth/registro/cantina': {
       post: {
-        tags: ['Autenticação'],
-        summary: 'Cadastrar cantina (requer chave administrativa)',
+        tags: ['Criar Cantina'],
+        summary: 'Criar conta de cantina (vendedor)',
+        description: '**Cria um novo usuário do tipo cantina (vendedor).** Requer a chave administrativa (`CANTINA_REGISTER_KEY`) definida no servidor. Use este endpoint para registrar uma nova cantina no sistema.',
         requestBody: {
           required: true,
           content: {
@@ -72,18 +73,24 @@ const spec = {
                 type: 'object',
                 required: ['nome', 'email', 'senha', 'chaveAdmin'],
                 properties: {
-                  nome: { type: 'string', example: 'Cantina Central' },
-                  email: { type: 'string', example: 'cantina@escola.br' },
-                  senha: { type: 'string', example: 'Senha123' },
-                  chaveAdmin: { type: 'string', example: '••••••••', description: 'Chave administrativa necessária para criar uma cantina' },
+                  nome:       { type: 'string',  example: 'Cantina Central',   description: 'Nome da cantina' },
+                  email:      { type: 'string',  example: 'cantina@escola.br', description: 'Email de acesso' },
+                  senha:      { type: 'string',  example: 'Senha@123',         description: 'Mínimo 6 caracteres' },
+                  chaveAdmin: { type: 'string',  example: '••••••••',          description: 'Chave administrativa do servidor (CANTINA_REGISTER_KEY)' },
                 },
+              },
+              example: {
+                nome: 'Cantina Central',
+                email: 'cantina@escola.br',
+                senha: 'Senha@123',
+                chaveAdmin: 'sua_chave_admin',
               },
             },
           },
         },
         responses: {
-          201: { description: 'Cantina criada com sucesso' },
-          400: { description: 'Dados inválidos' },
+          201: { description: 'Cantina criada com sucesso — conta pronta para login' },
+          400: { description: 'Dados inválidos (campos obrigatórios ausentes ou senha fraca)' },
           403: { description: 'Chave administrativa inválida' },
           409: { description: 'Email já cadastrado' },
         },
@@ -136,6 +143,31 @@ const spec = {
         responses: {
           200: { description: 'Login realizado — retorna token JWT e dados da cantina' },
           401: { description: 'Credenciais inválidas' },
+        },
+      },
+    },
+    '/api/auth/reenviar-verificacao': {
+      post: {
+        tags: ['Criar Cantina'],
+        summary: 'Reenviar e-mail de verificação',
+        description: 'Reenvia o e-mail de verificação para contas que ainda não confirmaram o endereço.',
+        requestBody: {
+          required: true,
+          content: {
+            'application/json': {
+              schema: {
+                type: 'object',
+                required: ['email'],
+                properties: {
+                  email: { type: 'string', example: 'cantina@escola.br' },
+                },
+              },
+            },
+          },
+        },
+        responses: {
+          200: { description: 'E-mail reenviado (se o e-mail existir e ainda não estiver verificado)' },
+          400: { description: 'Email obrigatório' },
         },
       },
     },

@@ -53,8 +53,6 @@ export const api = {
   loginCantina: (email, senha) => request('POST', '/auth/login/cantina', { email, senha }),
   registrarUsuario: (dados) => request('POST', '/auth/registro/usuario', dados),
   registrarCantina: (dados) => request('POST', '/auth/registro/cantina', dados),
-  googleLogin: (idToken) => request('POST', '/auth/google', { idToken }),
-
   getProdutosDisponiveis: (params) => request('GET', `/produtos/disponiveis${buildQuery(params)}`),
   getProdutosPorCantina: (cantina_id, params) => request('GET', `/produtos/cantina/${cantina_id}${buildQuery(params)}`),
   criarProduto: (dados) => request('POST', '/produtos', dados),
