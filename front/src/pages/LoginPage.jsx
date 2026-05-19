@@ -221,7 +221,7 @@ export default function LoginPage() {
               {modo === 'verificando' ? 'Verifique seu e-mail'
                 : isAluno
                   ? modo === 'cadastro' ? 'Cadastro de Aluno' : 'Login de Aluno'
-                  : 'Login da Cantina'}
+                  : modo === 'cadastro' ? 'Criar Cantina' : 'Login da Cantina'}
             </h2>
             <p>
               {modo === 'verificando' ? 'Digite o código de 6 dígitos enviado para o seu e-mail'
@@ -229,7 +229,9 @@ export default function LoginPage() {
                   ? modo === 'cadastro'
                     ? 'Crie sua conta para fazer reservas'
                     : 'Entre para ver o menu e fazer reservas'
-                  : 'Acesse o painel para gerenciar o menu'}
+                  : modo === 'cadastro'
+                    ? 'Preencha os dados e a chave administrativa'
+                    : 'Acesse o painel para gerenciar o menu'}
             </p>
           </div>
 
@@ -342,19 +344,19 @@ export default function LoginPage() {
             </button>
           </form>}
 
-          {modo !== 'verificando' && isAluno && (
+          {modo !== 'verificando' && (
             <div className={styles.alternar}>
               {modo === 'login' ? (
                 <p>
-                  Não tem conta?{' '}
-                  <button className={styles.linkBtn} onClick={() => { setModo('cadastro'); setErro(''); }}>
-                    Cadastre-se
+                  {isAluno ? 'Não tem conta?' : 'Nova cantina?'}{' '}
+                  <button className={styles.linkBtn} onClick={() => { setModo('cadastro'); setErro(''); setSucesso(''); }}>
+                    {isAluno ? 'Cadastre-se' : 'Criar cantina'}
                   </button>
                 </p>
               ) : (
                 <p>
-                  Já tem conta?{' '}
-                  <button className={styles.linkBtn} onClick={() => { setModo('login'); setErro(''); }}>
+                  Já tem cadastro?{' '}
+                  <button className={styles.linkBtn} onClick={() => { setModo('login'); setErro(''); setSucesso(''); }}>
                     Entrar
                   </button>
                 </p>
