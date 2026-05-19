@@ -180,7 +180,93 @@
 
   .arch-arrow { font-size: 20px; color: var(--accent); padding: 0 6px; align-self: center; flex-shrink: 0; }
 
-  /* ── SLIDE 3 — TECNOLOGIAS ── */
+  /* ── SLIDE 3 — OBJECT CALISTHENICS ── */
+  .slide-oc {
+    background: radial-gradient(ellipse at 70% 30%, #2a1000 0%, var(--bg) 60%);
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .oc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 100%;
+  }
+
+  .oc-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .oc-card:hover { border-color: rgba(249,115,22,0.5); transform: translateY(-2px); }
+
+  .oc-card .oc-header { display: flex; align-items: center; gap: 8px; }
+  .oc-card .oc-num {
+    font-size: 10px;
+    font-weight: 700;
+    background: rgba(249,115,22,0.15);
+    color: var(--accent);
+    border: 1px solid rgba(249,115,22,0.3);
+    border-radius: 100px;
+    padding: 2px 8px;
+    flex-shrink: 0;
+  }
+  .oc-card .oc-title { font-size: 13px; font-weight: 700; color: var(--white); }
+  .oc-card .oc-example {
+    font-size: 11px;
+    font-family: 'Cascadia Code', 'Fira Code', monospace;
+    color: var(--accent2);
+    background: rgba(249,115,22,0.06);
+    border-radius: 6px;
+    padding: 5px 8px;
+    line-height: 1.4;
+  }
+  .oc-card .oc-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  /* ── SLIDE 4 — LIVROS ── */
+  .slide-books {
+    background: radial-gradient(ellipse at 40% 60%, #2a1000 0%, var(--bg) 60%);
+    gap: 32px;
+    align-items: flex-start;
+  }
+
+  .books-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%; }
+
+  .book-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .book-card:hover { border-color: rgba(249,115,22,0.5); transform: translateY(-4px); }
+
+  .book-card .bk-cover { font-size: 48px; }
+  .book-card .bk-title { font-size: 18px; font-weight: 800; color: var(--white); line-height: 1.2; }
+  .book-card .bk-author { font-size: 12px; color: var(--muted); }
+  .book-card .bk-divider { height: 1px; background: var(--border); }
+  .book-card .bk-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .book-card .bk-applied { display: flex; flex-direction: column; gap: 6px; }
+  .book-card .bk-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--text); line-height: 1.4; }
+  .book-card .bk-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; }
+
+  /* ── SLIDE 5 — TECNOLOGIAS ── */
   .slide-tech {
     background: radial-gradient(ellipse at 20% 80%, #2a1200 0%, var(--bg) 60%);
     gap: 28px;
@@ -230,63 +316,59 @@
     align-items: flex-start;
   }
 
-  .rest-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; }
+  .rest-features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; width: 100%; }
 
-  .rest-col {
+  .rest-feat {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 22px;
+    padding: 20px 16px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 8px;
+    align-items: flex-start;
+    transition: border-color 0.2s, transform 0.2s;
   }
+  .rest-feat:hover { border-color: rgba(249,115,22,0.5); transform: translateY(-3px); }
+  .rest-feat .rf-icon { font-size: 28px; }
+  .rest-feat .rf-title { font-size: 14px; font-weight: 700; color: var(--white); line-height: 1.3; }
+  .rest-feat .rf-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
-  .rest-col.chosen { border-color: rgba(249,115,22,0.5); }
-  .rest-col.other  { border-color: var(--border); opacity: 0.75; }
-
-  .rest-col-header {
+  .rest-endpoints {
+    width: 100%;
+    background: var(--card);
+    border: 1px solid rgba(249,115,22,0.3);
+    border-radius: 16px;
+    padding: 18px 22px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 10px;
-    padding-bottom: 12px;
+  }
+  .rest-endpoints .re-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    font-weight: 700;
+    padding-bottom: 10px;
     border-bottom: 1px solid var(--border);
   }
-
-  .rest-col-header .col-icon { font-size: 22px; }
-  .rest-col-header .col-name { font-size: 16px; font-weight: 700; color: var(--white); }
-  .rest-col-header .col-badge {
-    margin-left: auto;
-    font-size: 10px;
+  .rest-ep-row { display: flex; align-items: center; gap: 12px; }
+  .rest-ep-row .ep-method {
+    font-size: 11px;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 3px 10px;
-    border-radius: 100px;
+    font-family: 'Cascadia Code', 'Fira Code', monospace;
+    padding: 3px 8px;
+    border-radius: 6px;
+    min-width: 52px;
+    text-align: center;
   }
-  .col-badge.yes { background: rgba(249,115,22,0.2); color: var(--accent); border: 1px solid rgba(249,115,22,0.4); }
-  .col-badge.no  { background: rgba(154,122,88,0.15); color: var(--muted); border: 1px solid rgba(154,122,88,0.3); }
-
-  .rest-point { display: flex; align-items: flex-start; gap: 10px; }
-  .rest-point .rp-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
-  .rp-dot.pro  { background: var(--accent); }
-  .rp-dot.con  { background: var(--muted); }
-  .rest-point .rp-text { font-size: 13px; color: var(--text); line-height: 1.5; }
-  .rest-point .rp-text span { font-size: 11px; color: var(--muted); display: block; }
-
-  .rest-verdict {
-    width: 100%;
-    background: rgba(249,115,22,0.08);
-    border: 1px solid rgba(249,115,22,0.3);
-    border-radius: 14px;
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .rest-verdict .rv-icon { font-size: 24px; flex-shrink: 0; }
-  .rest-verdict .rv-text { font-size: 13px; color: var(--text); line-height: 1.5; }
-  .rest-verdict .rv-text strong { color: var(--accent); }
+  .ep-method.get    { background: rgba(34,197,94,0.15);  color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+  .ep-method.post   { background: rgba(249,115,22,0.15); color: var(--accent); border: 1px solid rgba(249,115,22,0.3); }
+  .ep-method.put    { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+  .ep-method.delete { background: rgba(239,68,68,0.15);  color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+  .rest-ep-row .ep-path { font-size: 13px; font-family: 'Cascadia Code', 'Fira Code', monospace; color: var(--text); flex: 1; }
+  .rest-ep-row .ep-desc { font-size: 11px; color: var(--muted); }
 
   /* ── SLIDE 5 — SEGURANÇA ── */
   .slide-security {
@@ -379,7 +461,72 @@
   .ctx-item .ctx-name { font-size: 13px; font-weight: 600; color: var(--white); font-family: 'Cascadia Code', 'Fira Code', monospace; }
   .ctx-item .ctx-desc { font-size: 11px; color: var(--muted); }
 
-  /* ── SLIDE 6 — ENCERRAMENTO ── */
+  /* ── SLIDE 7 — ACESSIBILIDADE ── */
+  .slide-a11y {
+    background: radial-gradient(ellipse at 30% 70%, #1a0f00 0%, var(--bg) 60%);
+    gap: 28px;
+    align-items: flex-start;
+  }
+
+  .a11y-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; }
+
+  .a11y-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .a11y-card:hover { border-color: rgba(249,115,22,0.5); transform: translateY(-3px); }
+
+  .a11y-card .ac-top { display: flex; align-items: center; gap: 10px; }
+  .a11y-card .ac-icon { font-size: 24px; }
+  .a11y-card .ac-title { font-size: 14px; font-weight: 700; color: var(--white); }
+  .a11y-card .ac-who {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(249,115,22,0.1);
+    border: 1px solid rgba(249,115,22,0.25);
+    border-radius: 100px;
+    padding: 2px 10px;
+    align-self: flex-start;
+  }
+  .a11y-card .ac-before {
+    font-size: 12px;
+    color: var(--muted);
+    padding: 6px 10px;
+    background: rgba(154,122,88,0.08);
+    border-left: 2px solid rgba(154,122,88,0.3);
+    border-radius: 0 6px 6px 0;
+    line-height: 1.5;
+  }
+  .a11y-card .ac-after {
+    font-size: 12px;
+    color: var(--text);
+    padding: 6px 10px;
+    background: rgba(249,115,22,0.06);
+    border-left: 2px solid rgba(249,115,22,0.4);
+    border-radius: 0 6px 6px 0;
+    line-height: 1.5;
+  }
+  .a11y-card .ac-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+  }
+  .ac-label.antes { color: var(--muted); }
+  .ac-label.depois { color: var(--accent); }
+
+  /* ── SLIDE 8 — ENCERRAMENTO ── */
   .slide-end {
     background: radial-gradient(ellipse at 50% 50%, #3a1800 0%, var(--bg) 70%);
     flex-direction: row;
@@ -499,7 +646,7 @@
 <body>
 
 <div class="slide-logo">Cantina<span>GO</span></div>
-<div class="slide-num" id="slideNum">1 / 7</div>
+<div class="slide-num" id="slideNum">1 / 10</div>
 <div class="key-hint"><span class="key">←</span><span class="key">→</span> para navegar</div>
 
 <div class="slides-container">
@@ -570,10 +717,154 @@
     </div>
   </div>
 
-  <!-- SLIDE 3: TECNOLOGIAS -->
+  <!-- SLIDE 3: OBJECT CALISTHENICS -->
+  <div class="slide slide-oc">
+    <div class="slide-title">
+      <span class="tag">03 — Qualidade de Código</span>
+      <h2>Object Calisthenics — 9 Regras Aplicadas</h2>
+    </div>
+
+    <div class="oc-grid">
+
+      <div class="oc-card">
+        <div class="oc-header">
+          <span class="oc-num">Regra 1</span>
+          <span class="oc-title">Um nível de indentação</span>
+        </div>
+        <div class="oc-example">try { await Service.criar() } catch { next(erro) }</div>
+        <div class="oc-desc">Controllers com apenas try/catch — sem ifs aninhados dentro de loops.</div>
+      </div>
+
+      <div class="oc-card">
+        <div class="oc-header">
+          <span class="oc-num">Regra 2</span>
+          <span class="oc-title">Sem <code>else</code></span>
+        </div>
+        <div class="oc-example">throw new UnauthorizedException(…)<br>// nunca: if (ok) { … } else { … }</div>
+        <div class="oc-desc">Erros lançam exceção. Sucesso segue em frente. Sem bifurcação.</div>
+      </div>
+
+      <div class="oc-card">
+        <div class="oc-header">
+          <span class="oc-num">Regra 3</span>
+          <span class="oc-title">Encapsular primitivos</span>
+        </div>
+        <div class="oc-example">new Email("user@email.com")<br>new Id("uuid-aqui")</div>
+        <div class="oc-desc">Strings e UUIDs viram objetos com validação embutida no construtor.</div>
+      </div>
+
+      <div class="oc-card">
+        <div class="oc-header">
+          <span class="oc-num">Regra 5</span>
+          <span class="oc-title">Sem abreviações</span>
+        </div>
+        <div class="oc-example">cantinaCriada, usuarioAutenticado<br>// nunca: u, obj, res2</div>
+        <div class="oc-desc">Nomes descrevem o que são — o código se lê como texto.</div>
+      </div>
+
+      <div class="oc-card">
+        <div class="oc-header">
+          <span class="oc-num">Regra 6</span>
+          <span class="oc-title">Entidades pequenas</span>
+        </div>
+        <div class="oc-example">Controller ~95 linhas<br>Value Object ~35 linhas</div>
+        <div class="oc-desc">Cada arquivo tem uma responsabilidade. Nada faz mais do que deve.</div>
+      </div>
+
+      <div class="oc-card">
+        <div class="oc-header">
+          <span class="oc-num">Regra 7</span>
+          <span class="oc-title">Acesso via métodos</span>
+        </div>
+        <div class="oc-example">email.toString()<br>id.toJSON() · produto.estaDisponivel()</div>
+        <div class="oc-desc">Nenhum código externo acessa .value diretamente — sempre via método.</div>
+      </div>
+
+      <div class="oc-card">
+        <div class="oc-header">
+          <span class="oc-num">Regra 8</span>
+          <span class="oc-title">Composição, não herança</span>
+        </div>
+        <div class="oc-example">Result.created(data).send(res)<br>// Result contém, não herda</div>
+        <div class="oc-desc">Result tem data e statusCode dentro — sem cadeia de herança.</div>
+      </div>
+
+      <div class="oc-card">
+        <div class="oc-header">
+          <span class="oc-num">Regra 9</span>
+          <span class="oc-title">Tell, don't Ask</span>
+        </div>
+        <div class="oc-example">Result.created(dados).send(res)<br>// manda fazer, não pergunta</div>
+        <div class="oc-desc">Dizemos ao objeto o que fazer — ele não retorna estado para decidirmos fora.</div>
+      </div>
+
+      <div class="oc-card">
+        <div class="oc-header">
+          <span class="oc-num">Regra 10</span>
+          <span class="oc-title">Exceções, não ifs</span>
+        </div>
+        <div class="oc-example">throw new ValidationException()<br>throw new NotFoundException()</div>
+        <div class="oc-desc">3 exceções específicas substituem ifs de validação em todo o projeto.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SLIDE 4: LIVROS -->
+  <div class="slide slide-books">
+    <div class="slide-title">
+      <span class="tag">04 — Referências</span>
+      <h2>Livros que guiaram o projeto</h2>
+    </div>
+
+    <div class="books-grid">
+
+      <div class="book-card">
+        <div class="bk-cover">📗</div>
+        <div class="bk-title">Clean Code</div>
+        <div class="bk-author">Robert C. Martin</div>
+        <div class="bk-divider"></div>
+        <div class="bk-label">Aplicado no projeto</div>
+        <div class="bk-applied">
+          <div class="bk-item"><div class="bk-dot"></div>Nomes descritivos — sem abreviações em variáveis e métodos</div>
+          <div class="bk-item"><div class="bk-dot"></div>Métodos pequenos com uma única responsabilidade</div>
+          <div class="bk-item"><div class="bk-dot"></div>Código que se lê como texto — sem comentários desnecessários</div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="bk-cover">📘</div>
+        <div class="bk-title">Clean Architecture</div>
+        <div class="bk-author">Robert C. Martin</div>
+        <div class="bk-divider"></div>
+        <div class="bk-label">Aplicado no projeto</div>
+        <div class="bk-applied">
+          <div class="bk-item"><div class="bk-dot"></div>Separação em camadas — Routes, Controllers, Services, Repositories</div>
+          <div class="bk-item"><div class="bk-dot"></div>Regras de negócio isoladas dos detalhes de infraestrutura</div>
+          <div class="bk-item"><div class="bk-dot"></div>Banco de dados é detalhe — o Service não conhece o SQL</div>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="bk-cover">📙</div>
+        <div class="bk-title">Padrões de Projeto</div>
+        <div class="bk-author">Gang of Four (GoF)</div>
+        <div class="bk-divider"></div>
+        <div class="bk-label">Aplicado no projeto</div>
+        <div class="bk-applied">
+          <div class="bk-item"><div class="bk-dot"></div>Repository Pattern — isola o acesso ao banco em uma camada própria</div>
+          <div class="bk-item"><div class="bk-dot"></div>Value Object — Email e Id encapsulam validação e comportamento</div>
+          <div class="bk-item"><div class="bk-dot"></div>Result Pattern — resposta única e previsível em todos os endpoints</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SLIDE 5: TECNOLOGIAS -->
   <div class="slide slide-tech">
     <div class="slide-title">
-      <span class="tag">03 — Stack</span>
+      <span class="tag">05 — Stack</span>
       <h2>Tecnologias</h2>
     </div>
     <div class="tech-grid">
@@ -592,7 +883,6 @@
         <div class="tech-item"><div class="tech-dot frontend"></div><span class="tech-name">Vite 8</span><span class="tech-detail">Build tool</span></div>
         <div class="tech-item"><div class="tech-dot frontend"></div><span class="tech-name">React Router v7</span><span class="tech-detail">SPA routing</span></div>
         <div class="tech-item"><div class="tech-dot frontend"></div><span class="tech-name">Context API</span><span class="tech-detail">State management</span></div>
-        <div class="tech-item"><div class="tech-dot frontend"></div><span class="tech-name">Google OAuth</span><span class="tech-detail">Login social</span></div>
         <div class="tech-item"><div class="tech-dot frontend"></div><span class="tech-name">SSE</span><span class="tech-detail">Notificações em tempo real</span></div>
       </div>
       <div class="tech-col">
@@ -612,50 +902,65 @@
     </div>
   </div>
 
-  <!-- SLIDE 4: REST vs GraphQL -->
+  <!-- SLIDE 4: REST -->
   <div class="slide slide-rest">
     <div class="slide-title">
-      <span class="tag">04 — Decisão de API</span>
-      <h2>Por que REST e não GraphQL?</h2>
+      <span class="tag">06 — API</span>
+      <h2>REST — Como construímos nossa API</h2>
     </div>
 
-    <div class="rest-layout">
-      <div class="rest-col chosen">
-        <div class="rest-col-header">
-          <span class="col-icon">🌐</span>
-          <span class="col-name">REST</span>
-          <span class="col-badge yes">Nossa escolha</span>
-        </div>
-        <div class="rest-point"><div class="rp-dot pro"></div><div class="rp-text">Simples de implementar e entender<span>Menos overhead — cada endpoint faz uma coisa clara</span></div></div>
-        <div class="rest-point"><div class="rp-dot pro"></div><div class="rp-text">Documentação automática com Swagger<span>A UI interativa já vem pronta sem esforço extra</span></div></div>
-        <div class="rest-point"><div class="rp-dot pro"></div><div class="rp-text">Stateless por natureza<span>Facilita escalar horizontalmente — o servidor não guarda estado</span></div></div>
-        <div class="rest-point"><div class="rp-dot pro"></div><div class="rp-text">Padrão consolidado para SPAs<span>React + fetch/axios consome REST sem camada extra</span></div></div>
-        <div class="rest-point"><div class="rp-dot pro"></div><div class="rp-text">Resposta estruturada e previsível<span>Todo endpoint retorna o mesmo formato — o frontend sabe o que esperar</span></div></div>
+    <div class="rest-features">
+      <div class="rest-feat">
+        <div class="rf-icon">🌐</div>
+        <div class="rf-title">URLs com propósito claro</div>
+        <div class="rf-desc">Cada endpoint faz uma coisa. <code>/api/reservas</code> cuida só de reservas — sem ambiguidade.</div>
       </div>
-
-      <div class="rest-col other">
-        <div class="rest-col-header">
-          <span class="col-icon">🔷</span>
-          <span class="col-name">GraphQL</span>
-          <span class="col-badge no">Não se aplica aqui</span>
-        </div>
-        <div class="rest-point"><div class="rp-dot con"></div><div class="rp-text">Faz sentido com consultas de campos variáveis<span>Aqui os dados retornados são sempre os mesmos — não há over-fetching</span></div></div>
-        <div class="rest-point"><div class="rp-dot con"></div><div class="rp-text">Vantajoso em apps móveis com bandwidth limitado<span>Nosso frontend é web — sem essa restrição</span></div></div>
-        <div class="rest-point"><div class="rp-dot con"></div><div class="rp-text">Schema e resolvers adicionam complexidade<span>Custo de configuração alto para um projeto de escopo fixo</span></div></div>
-        <div class="rest-point"><div class="rp-dot con"></div><div class="rp-text">Documentação requer ferramentas extras<span>GraphiQL, Playground — sem equivalente tão direto quanto Swagger</span></div></div>
+      <div class="rest-feat">
+        <div class="rf-icon">📄</div>
+        <div class="rf-title">Swagger automático</div>
+        <div class="rf-desc">Documentação interativa gerada do próprio código — qualquer um pode testar os endpoints sem ler código.</div>
+      </div>
+      <div class="rest-feat">
+        <div class="rf-icon">⚡</div>
+        <div class="rf-title">Stateless</div>
+        <div class="rf-desc">O servidor não guarda sessão. Cada requisição carrega o JWT — fácil de escalar e de testar.</div>
+      </div>
+      <div class="rest-feat">
+        <div class="rf-icon">🔁</div>
+        <div class="rf-title">Resposta padronizada</div>
+        <div class="rf-desc">Todo endpoint retorna o mesmo formato <code>&#123; data, message &#125;</code> — o frontend sabe exatamente o que esperar.</div>
       </div>
     </div>
 
-    <div class="rest-verdict">
-      <span class="rv-icon">💡</span>
-      <div class="rv-text"><strong>Veredicto:</strong> GraphQL brilha quando o cliente precisa escolher exatamente quais campos buscar. Aqui, cada endpoint tem um propósito fixo — REST é mais direto, mais fácil de documentar e mais familiar para quem vai consumir ou revisar a API.</div>
+    <div class="rest-endpoints">
+      <div class="re-title">Endpoints do projeto</div>
+      <div class="rest-ep-row">
+        <span class="ep-method post">POST</span>
+        <span class="ep-path">/api/auth/login-usuario</span>
+        <span class="ep-desc">Login do aluno com JWT</span>
+      </div>
+      <div class="rest-ep-row">
+        <span class="ep-method get">GET</span>
+        <span class="ep-path">/api/produtos</span>
+        <span class="ep-desc">Cardápio público da cantina</span>
+      </div>
+      <div class="rest-ep-row">
+        <span class="ep-method post">POST</span>
+        <span class="ep-path">/api/reservas</span>
+        <span class="ep-desc">Aluno cria uma reserva</span>
+      </div>
+      <div class="rest-ep-row">
+        <span class="ep-method put">PUT</span>
+        <span class="ep-path">/api/reservas/:id/status</span>
+        <span class="ep-desc">Cantina atualiza status do pedido</span>
+      </div>
     </div>
   </div>
 
   <!-- SLIDE 5: SEGURANÇA -->
   <div class="slide slide-security">
     <div class="slide-title">
-      <span class="tag">05 — Segurança</span>
+      <span class="tag">07 — Segurança</span>
       <h2>Proteção em Múltiplas Camadas</h2>
     </div>
     <div class="security-grid">
@@ -720,8 +1025,8 @@
   <!-- SLIDE 5: FRONTEND -->
   <div class="slide slide-frontend">
     <div class="slide-title">
-      <span class="tag">06 — Frontend</span>
-      <h2>React 19 + Experiência do Usuário</h2>
+      <span class="tag">08 — Frontend</span>
+      <h2>Experiência do Usuário</h2>
     </div>
     <div class="frontend-layout">
       <div class="frontend-main">
@@ -781,7 +1086,67 @@
     </div>
   </div>
 
-  <!-- SLIDE 6: ENCERRAMENTO -->
+  <!-- SLIDE 7: ACESSIBILIDADE -->
+  <div class="slide slide-a11y">
+    <div class="slide-title">
+      <span class="tag">09 — Acessibilidade</span>
+      <h2>O site funciona para todos</h2>
+    </div>
+
+    <div class="a11y-grid">
+
+      <div class="a11y-card">
+        <div class="ac-top">
+          <span class="ac-icon">🤟</span>
+          <span class="ac-title">Libras</span>
+        </div>
+        <span class="ac-who">Pessoas surdas</span>
+        <div>
+          <div class="ac-label depois">Como funciona</div>
+          <div class="ac-after">O botão VLibras traduz todo o conteúdo do site para Língua Brasileira de Sinais em vídeo.</div>
+        </div>
+      </div>
+
+      <div class="a11y-card">
+        <div class="ac-top">
+          <span class="ac-icon">🎞️</span>
+          <span class="ac-title">Menos movimento</span>
+        </div>
+        <span class="ac-who">Epilepsia · Vertigem</span>
+        <div>
+          <div class="ac-label depois">Como funciona</div>
+          <div class="ac-after">Se o usuário ativou "reduzir animações" no celular ou computador, o site respeita essa escolha e desliga os efeitos visuais.</div>
+        </div>
+      </div>
+
+      <div class="a11y-card">
+        <div class="ac-top">
+          <span class="ac-icon">🔊</span>
+          <span class="ac-title">Leitura em voz alta</span>
+        </div>
+        <span class="ac-who">Deficiência visual</span>
+        <div>
+          <div class="ac-label depois">Como funciona</div>
+          <div class="ac-after">Cada botão do site tem uma descrição em texto invisível. O leitor de tela do celular lê em voz alta o que cada botão faz — e avisa quando chega uma notificação nova.</div>
+        </div>
+      </div>
+
+      <div class="a11y-card">
+        <div class="ac-top">
+          <span class="ac-icon">⌨️</span>
+          <span class="ac-title">Sem precisar de mouse</span>
+        </div>
+        <span class="ac-who">Dificuldade motora</span>
+        <div>
+          <div class="ac-label depois">Como funciona</div>
+          <div class="ac-after">Todo o site pode ser navegado só com o teclado — a tecla Tab move entre os botões e Enter confirma a ação, sem precisar de clique.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SLIDE 8: ENCERRAMENTO -->
   <div class="slide slide-end">
     <div class="end-content">
       <div class="score-ring">
@@ -810,7 +1175,6 @@
       </div>
 
       <div class="end-thanks">Obrigado.</div>
-      <div class="end-sub">Para nota 10: um pentest externo com OWASP ZAP — próximo passo natural se o sistema fosse para produção real.</div>
     </div>
 
     <div class="qr-panel">
@@ -832,7 +1196,7 @@
 </div>
 
 <script>
-  const total = 7;
+  const total = 10;
   let current = 0;
 
   const slidesEl = Array.from(document.querySelectorAll('.slide'));
