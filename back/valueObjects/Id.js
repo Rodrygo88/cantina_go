@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import ValidationException from '../exceptions/ValidationException.js';
 
 class Id {
   constructor(value) {
@@ -13,7 +14,7 @@ class Id {
   validate(value) {
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     if (!uuidRegex.test(value)) {
-      throw new Error(`ID inválido: ${value}`);
+      throw new ValidationException('ID inválido', { id: `ID inválido: ${value}` });
     }
   }
 

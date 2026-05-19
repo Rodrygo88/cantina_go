@@ -7,7 +7,7 @@ class ErrorMiddleware {
       return erro.toResult().send(res);
     }
     const isProd = process.env.NODE_ENV === 'production';
-    if (!isProd) console.error(erro);
+    console.error('[ERROR]', erro);
     return Result.internalError(isProd ? 'Erro interno do servidor' : erro.message).send(res);
   }
 }

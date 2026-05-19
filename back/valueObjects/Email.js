@@ -1,3 +1,5 @@
+import ValidationException from '../exceptions/ValidationException.js';
+
 class Email {
   constructor(value) {
     const normalizado = value ? value.toLowerCase().trim() : value;
@@ -8,7 +10,7 @@ class Email {
   validate(value) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(value)) {
-      throw new Error(`Email inválido: ${value}`);
+      throw new ValidationException('Email inválido', { email: `Email inválido: ${value}` });
     }
   }
 
