@@ -113,6 +113,8 @@ export default function MenuPage() {
       mensagemTimer.current = setTimeout(() => setMensagem(''), MENSAGEM_TIMEOUT);
     } catch (err) {
       setMensagem(err.message);
+      clearTimeout(mensagemTimer.current);
+      mensagemTimer.current = setTimeout(() => setMensagem(''), 4000);
     } finally {
       setEnviando(false);
     }
