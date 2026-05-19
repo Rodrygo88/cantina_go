@@ -89,36 +89,50 @@ export default function Navegacao() {
 
   return (
     <>
-      <button className={styles.floatingTheme} onClick={toggle} title="Alternar tema">
+      <button
+        className={styles.floatingTheme}
+        onClick={toggle}
+        aria-label={theme === 'light' ? 'Ativar tema escuro' : 'Ativar tema claro'}
+      >
         {theme === 'light' ? <IconMoon size={17} /> : <IconSun size={17} />}
       </button>
 
       {tipo === 'usuario' && (
-        <button className={styles.floatingSino} onClick={abrirPainel} title="Notificações">
+        <button
+          className={styles.floatingSino}
+          onClick={abrirPainel}
+          aria-label={naoLidas > 0 ? `Notificações, ${naoLidas} não lida${naoLidas > 1 ? 's' : ''}` : 'Notificações'}
+        >
           <IconSino />
           {naoLidas > 0 && (
-            <span className={styles.sinoBadge}>{naoLidas > 9 ? '9+' : naoLidas}</span>
+            <span className={styles.sinoBadge} aria-hidden="true">{naoLidas > 9 ? '9+' : naoLidas}</span>
           )}
         </button>
       )}
 
       {painelAberto && (
         <div className={styles.painelOverlay} onClick={() => setPainelAberto(false)}>
-          <div className={styles.painel} onClick={e => e.stopPropagation()}>
+          <div
+            className={styles.painel}
+            onClick={e => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Painel de notificações"
+          >
             <div className={styles.painelHeader}>
               <span className={styles.painelTitulo}>Notificações</span>
               {notificacoes.length > 0 && (
-                <button className={styles.painelLimpar} onClick={limpar}>Limpar</button>
+                <button className={styles.painelLimpar} onClick={limpar} aria-label="Limpar todas as notificações">Limpar</button>
               )}
             </div>
 
-            <div className={styles.painelLista}>
+            <div className={styles.painelLista} aria-live="polite" aria-label="Lista de notificações">
               {notificacoes.length === 0 && (
                 <p className={styles.painelVazio}>Nenhuma notificação ainda.</p>
               )}
               {notificacoes.map(n => (
                 <div key={n.id} className={`${styles.painelItem} ${n.tipo === 'success' ? styles.itemSuccess : styles.itemError}`}>
-                  <span className={styles.itemIcone}>{n.tipo === 'success' ? '✓' : '✕'}</span>
+                  <span className={styles.itemIcone} aria-hidden="true">{n.tipo === 'success' ? '✓' : '✕'}</span>
                   <div className={styles.itemCorpo}>
                     <p className={styles.itemMsg}>{n.mensagem}</p>
                     <span className={styles.itemHora}>{formatarHora(n.hora)}</span>
@@ -130,22 +144,31 @@ export default function Navegacao() {
         </div>
       )}
 
-      <nav className={styles.bottomNav}>
-        {itens.map((item) => (
-          <div
-            key={item.path}
-            className={`${styles.navItem} ${location.pathname === item.path ? styles.active : ''}`}
-            onClick={() => navigate(item.path)}
-          >
-            <span className={styles.navIcon}>
-              {item.icon}
-              {item.path === '/reservas' && pendentes > 0 && (
-                <span className={styles.badge}>{pendentes > 9 ? '9+' : pendentes}</span>
-              )}
-            </span>
-            <span className={styles.navText}>{item.label}</span>
-          </div>
-        ))}
+      <nav className={styles.bottomNav} aria-label="Navegação principal">
+        {itens.map((item) => {
+          const ativo = location.pathname === item.path;
+          const badgePendentes = item.path === '/reservas' && pendentes > 0;
+          return (
+            <div
+              key={item.path}
+              className={`${styles.navItem} ${ativo ? styles.active : ''}`}
+              onClick={() => navigate(item.path)}
+              onKeyDown={e => e.key === 'Enter' && navigate(item.path)}
+              role="button"
+              tabIndex={0}
+              aria-label={badgePendentes ? `${item.label}, ${pendentes} pendente${pendentes > 1 ? 's' : ''}` : item.label}
+              aria-current={ativo ? 'page' : undefined}
+            >
+              <span className={styles.navIcon} aria-hidden="true">
+                {item.icon}
+                {badgePendentes && (
+                  <span className={styles.badge}>{pendentes > 9 ? '9+' : pendentes}</span>
+                )}
+              </span>
+              <span className={styles.navText}>{item.label}</span>
+            </div>
+          );
+        })}
       </nav>
     </>
   );

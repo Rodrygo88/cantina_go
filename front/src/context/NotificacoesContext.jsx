@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { STORAGE_KEYS } from '../constants/storage';
 import { tocarSom } from '../utils/audio';
@@ -22,6 +22,8 @@ function salvar(lista) {
 
 export function NotificacoesProvider({ children }) {
   const [notificacoes, setNotificacoes] = useState(carregarSalvas);
+  const [anuncio, setAnuncio] = useState('');
+  const anuncioTimer = useRef(null);
   const location = useLocation();
 
   const naoLidas = notificacoes.filter(n => !n.lida).length;
@@ -33,6 +35,9 @@ export function NotificacoesProvider({ children }) {
       salvar(atualizado);
       return atualizado;
     });
+    clearTimeout(anuncioTimer.current);
+    setAnuncio(mensagem);
+    anuncioTimer.current = setTimeout(() => setAnuncio(''), 5000);
   }
 
   function marcarTodasLidas() {
@@ -74,6 +79,14 @@ export function NotificacoesProvider({ children }) {
   return (
     <NotificacoesContext.Provider value={{ notificacoes, naoLidas, marcarTodasLidas, limpar }}>
       {children}
+      <div
+        role="status"
+        aria-live="assertive"
+        aria-atomic="true"
+        style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap' }}
+      >
+        {anuncio}
+      </div>
     </NotificacoesContext.Provider>
   );
 }
