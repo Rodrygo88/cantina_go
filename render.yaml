@@ -19,3 +19,17 @@ services:
         sync: false
       - key: CORS_ORIGIN
         sync: false
+
+  - type: web
+    name: cantina-go-frontend
+    env: static
+    rootDir: front
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        value: https://cantina-go-415n.onrender.com
