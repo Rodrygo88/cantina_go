@@ -5,6 +5,7 @@ import { useTheme } from '../context/ThemeContext';
 import { STORAGE_KEYS } from '../constants/storage';
 import { validarCampo as _validarCampo } from '../utils/validators';
 import { IconSun, IconMoon } from '../components/ThemeIcons';
+import { lerPagina, pararLeitura, suportaLeitura } from '../utils/audio';
 import styles from './LoginPage.module.css';
 
 function CampoFormulario({ id, label, type = 'text', placeholder, value, onChange, onBlur, erro }) {
@@ -48,6 +49,12 @@ export default function LoginPage() {
 
   const navigate = useNavigate();
   const { theme, toggle } = useTheme();
+  const [lendo, setLendo] = useState(false);
+
+  function toggleLeitura() {
+    if (lendo) { pararLeitura(); setLendo(false); }
+    else { const ok = lerPagina(() => setLendo(false)); if (ok) setLendo(true); }
+  }
 
   useEffect(() => {
     document.body.style.paddingBottom = '0';
@@ -186,9 +193,26 @@ export default function LoginPage() {
 
   return (
     <div className={styles.loginContainer}>
-      <button className={styles.themeToggle} onClick={toggle} title="Alternar tema">
+      <button className={styles.themeToggle} onClick={toggle} aria-label={theme === 'light' ? 'Ativar tema escuro' : 'Ativar tema claro'}>
         {theme === 'light' ? <IconMoon /> : <IconSun />}
       </button>
+      {suportaLeitura() && (
+        <button
+          className={`${styles.leitorBtn} ${lendo ? styles.lendo : ''}`}
+          onClick={toggleLeitura}
+          aria-label={lendo ? 'Parar leitura' : 'Ler página em voz alta'}
+        >
+          {lendo ? (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+          ) : (
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            </svg>
+          )}
+        </button>
+      )}
       <div className={styles.loginBox}>
 
         <header className={styles.loginHeader}>
